@@ -1,10 +1,10 @@
 FROM ubuntu:21.04
 ARG DEBIAN_FRONTEND="noninteractive"
-ARG STREAMFX_FILE = "streamfx-ubuntu-20.04-0.10.1.0-gc8484f65.zip"
-ARG STREAMFX_VERSION = "0.10.1"
-ARG NDI_FILE = "libndi4_4.5.1-1_amd64.deb"
-ARG NDI_DEP = "libndi4_4.5.1-1_amd64.deb"
-ARG NDI_VERSION = "4.9.1"
+ARG STREAMFX_FILE="streamfx-ubuntu-20.04-0.10.1.0-gc8484f65.zip"
+ARG STREAMFX_VERSION="0.10.1"
+ARG NDI_FILE="libndi4_4.5.1-1_amd64.deb"
+ARG NDI_DEP="libndi4_4.5.1-1_amd64.deb"
+ARG NDI_VERSION="4.9.1"
 # for the VNC connection
 EXPOSE 5900
 # for the browser VNC client
