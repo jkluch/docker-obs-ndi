@@ -38,7 +38,7 @@ RUN add-apt-repository ppa:obsproject/obs-studio \
 	
 # Download and install the plugins for NDI
 RUN wget -q -O /tmp/$NDI_DEP https://github.com/Palakis/obs-ndi/releases/download/$NDI_VERSION/$NDI_DEP \
-	&& wget -q -O /tmp/$NDI_FILE https://github.com/Palakis/obs-ndi/releases/download/$NDI_VERSION/$NDI_FILE
+	&& wget -q -O /tmp/$NDI_FILE https://github.com/Palakis/obs-ndi/releases/download/$NDI_VERSION/$NDI_FILE \
 	&& dpkg -i /tmp/*.deb \
 	&& rm -rf /tmp/*.deb \
 	&& wget -q -O /tmp/$STREAMFX_FILE https://github.com/Xaymar/obs-StreamFX/releases/download/$STREAMFX_VERSION/$STREAMFX_FILE \
