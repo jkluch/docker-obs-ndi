@@ -11,8 +11,8 @@ RUN apt update \
 	&& apt install -y tigervnc-standalone-server fluxbox xterm git net-tools python3 python3-numpy scrot wget software-properties-common vlc avahi-daemon \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
-	&& git clone --branch v1.0.0 --single-branch https://github.com/novnc/noVNC.git /opt/noVNC \
-	&& git clone --branch v0.8.0 --single-branch https://github.com/novnc/websockify.git /opt/noVNC/utils/websockify \
+	&& git clone --branch v1.2.0 --single-branch https://github.com/novnc/noVNC.git /opt/noVNC \
+	&& git clone --branch v0.10.0 --single-branch https://github.com/novnc/websockify.git /opt/noVNC/utils/websockify \
 	&& ln -s /opt/noVNC/vnc.html /opt/noVNC/index.html \
 # Copy various files to their respective places
 	&& wget -q -O /opt/container_startup.sh https://raw.githubusercontent.com/Daedilus/docker-obs-ndi/master/container_startup.sh \
