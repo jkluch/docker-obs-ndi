@@ -7,7 +7,7 @@ EXPOSE 5901
 # Use environment variable to allow custom VNC passwords
 ENV VNC_PASSWD=123456
 # Make sure the dependencies are met
-RUN apt get update \
+RUN apt update \
 	&& apt install -y tigervnc-standalone-server fluxbox xterm git net-tools python python-numpy scrot wget software-properties-common vlc module-init-tools avahi-daemon \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
@@ -22,7 +22,7 @@ RUN apt get update \
 	&& wget -q -O /tmp/libndi4_4.5.1-1_amd64.deb https://github.com/Palakis/obs-ndi/releases/download/4.9.1/libndi4_4.5.1-1_amd64.deb \
 	&& wget -q -O /tmp/obs-ndi_4.9.1-1_amd64.deb https://github.com/Palakis/obs-ndi/releases/download/4.9.1/obs-ndi_4.9.1-1_amd64.deb 
 # Update apt for the new obs repository
-RUN apt-get update \
+RUN apt update \
 	&& mkdir -p /config/obs-studio /root/.config/ \
 	&& ln -s /config/obs-studio/ /root/.config/obs-studio \
 	&& apt install -y obs-studio \
