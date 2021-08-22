@@ -26,6 +26,10 @@ RUN sed -i 's/geteuid/getppid/' /usr/bin/vlc
 RUN git clone --branch v1.1.0 --single-branch https://github.com/novnc/noVNC.git /opt/noVNC \
 	&& git clone --branch v0.10.0 --single-branch https://github.com/novnc/websockify.git /opt/noVNC/utils/websockify \
 	&& ln -s /opt/noVNC/vnc.html /opt/noVNC/index.html
+
+# Directory Prep
+RUN mkdir -p /config/obs-studio /root/.config/ \
+	&& ln -s /config/obs-studio /root/.config/obs-studio
 # Install OBS
 RUN add-apt-repository ppa:obsproject/obs-studio \
 	&& apt-get update \
@@ -33,11 +37,9 @@ RUN add-apt-repository ppa:obsproject/obs-studio \
 	&& apt-get upgrade -y \
 	&& apt-get clean -y \
 	&& rm -rf /var/lib/apt/lists/*
-	# && ln -s /config/obs-studio/ /root/.config/obs-studio \
 	
 # Download and install the plugins for NDI
-RUN mkdir -p /config/obs-studio /root/.config/ \
-	&& wget -q -O /tmp/$NDI_DEP https://github.com/Palakis/obs-ndi/releases/download/$NDI_VERSION/$NDI_DEP \
+RUN wget -q -O /tmp/$NDI_DEP https://github.com/Palakis/obs-ndi/releases/download/$NDI_VERSION/$NDI_DEP \
 	&& wget -q -O /tmp/$NDI_FILE https://github.com/Palakis/obs-ndi/releases/download/$NDI_VERSION/$NDI_FILE \
 	&& dpkg -i /tmp/*.deb \
 	&& rm -rf /tmp/*.deb \
