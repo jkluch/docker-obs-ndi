@@ -43,14 +43,14 @@ RUN mkdir -p /config/obs-studio /root/.config/ \
 	&& rm -rf /tmp/*.deb \
 	&& wget -q -O /tmp/$STREAMFX_FILE https://github.com/Xaymar/obs-StreamFX/releases/download/$STREAMFX_VERSION/$STREAMFX_FILE \
 	&& unzip /tmp/*.zip -d /config/obs-studio/ \
-	&& rm -rf /tmp/*.zip \
-	&& chmod +x /opt/*.sh \
-	&& chmod +x /opt/startup_scripts/*.sh 
+	&& rm -rf /tmp/*.zip
 
 # Copy various files to their respective places	
 ADD startup.sh /opt/startup_scripts/
 ADD container_startup.sh /opt/
 ADD x11vnc_entrypoint.sh /opt/
+RUN chmod +x /opt/*.sh \
+	&& chmod +x /opt/startup_scripts/*.sh 
 
 # Add menu entries to the container
 RUN echo "?package(bash):needs=\"X11\" section=\"DockerCustom\" title=\"OBS Screencast\" command=\"obs\"" >> /usr/share/menu/custom-docker \
