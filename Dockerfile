@@ -36,7 +36,7 @@ RUN add-apt-repository ppa:obsproject/obs-studio \
 	# && ln -s /config/obs-studio/ /root/.config/obs-studio \
 	
 # Download and install the plugins for NDI
-RUN mkdir -p /config/obs-studio /root/.config/
+RUN mkdir -p /config/obs-studio /root/.config/ \
 	&& wget -q -O /tmp/$NDI_DEP https://github.com/Palakis/obs-ndi/releases/download/$NDI_VERSION/$NDI_DEP \
 	&& wget -q -O /tmp/$NDI_FILE https://github.com/Palakis/obs-ndi/releases/download/$NDI_VERSION/$NDI_FILE \
 	&& dpkg -i /tmp/*.deb \
