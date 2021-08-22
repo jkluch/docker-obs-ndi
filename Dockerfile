@@ -1,4 +1,4 @@
-FROM    ubuntu:18.04
+FROM    ubuntu:21.10
 ARG DEBIAN_FRONTEND="noninteractive"
 # for the VNC connection
 EXPOSE 5900
@@ -7,7 +7,7 @@ EXPOSE 5901
 # Use environment variable to allow custom VNC passwords
 ENV VNC_PASSWD=123456
 # Make sure the dependencies are met
-RUN apt-get update \
+RUN apt get update \
 	&& apt install -y tigervnc-standalone-server fluxbox xterm git net-tools python python-numpy scrot wget software-properties-common vlc module-init-tools avahi-daemon \
 	&& sed -i 's/geteuid/getppid/' /usr/bin/vlc \
 	&& add-apt-repository ppa:obsproject/obs-studio \
@@ -31,6 +31,9 @@ RUN apt-get update \
 	&& dpkg -i /tmp/*.deb \
 	&& rm -rf /tmp/*.deb \
 	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /tmp/*.zip \
+	&& wget -q -O /tmp/streamfx-ubuntu-20.04-0.10.1.0-gc8484f65.zip https://github.com/Xaymar/obs-StreamFX/releases/download/0.10.1/streamfx-ubuntu-20.04-0.10.1.0-gc8484f65.zip \
+	&& unzip /tmp/*.zip -d /config/obs-studio/ \
 	&& chmod +x /opt/*.sh \
 	&& chmod +x /opt/startup_scripts/*.sh 
 	 
